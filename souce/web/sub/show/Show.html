@@ -1,0 +1,28 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+ {{ template "Header" }}
+<div class="card">
+  <h3 class="card-header">Registro do Pedido: {{ .Orden.Pedido }}  &emsp;&emsp;<a class="btn btn-info" href="/edit?pedido={{ .Orden.Pedido }}">Editar</a></h3>
+ <div class="card-body">
+        <p>Cliente: {{ .Orden.Cliente }} </p>
+        <p>Status: {{ .Orden.Status }} </p> 
+        <p>Data Pedido: {{ .Orden.FormatDate .Orden.Datapedido }} </p> 
+        <p>Produto: {{ .Orden.Produto }} </p> 
+        <p>Quantidade: {{ .Orden.Quantidade }} </p> 
+        <p>Valor Unidade: {{ .Orden.FormatCurrencyFloat.Orden.Valorunidade }} </p> 
+        <p>Valor Total: {{ .Orden.FormatCurrencyFloat.Orden.Valortotal }} </p> 
+        <p>Valor Total: {{ .Orden.FormatCurrencyFloat.Orden.Valorrecebido }} </p> 
+        <p>Valor Total: {{ .Orden.FormatCurrencyFloat.Orden.Saldo }} </p> 
+        <p>Valor Total: {{ .Orden.Formapg }} </p>         
+        <p>Data Entrega: {{ .Orden.FormatDate .Orden.Datapedido }} </p> 
+        <p>Data Entrega: {{ .Orden.FormatDate .Orden.Dataentrega }} </p> 
+        <p>Data Fabricado: {{ .Orden.FormatDate .Orden.Datafabi }} </p> 
+        <p>Obs: {{ .Orden.Obs }} </p> 
+        <div>
+        <a href="/edit?pedido={{ .Orden.Pedido }}">Editar</a>
+        </div>
+    </div>
+</div>
+{{ template "Footer" }}
+{{ end }}

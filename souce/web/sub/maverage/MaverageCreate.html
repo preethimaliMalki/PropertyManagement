@@ -1,0 +1,192 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+  {{ template "Header" }}
+<div class="card">
+  <h3 class="card-header">Cadastrar Lenha Comprada</h3>
+<div class="card-body">
+    <form method="POST" action="/maverage/store" enctype="multipart/form-data">
+      
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label>Nome da Empresa</label>
+            </div>
+            <div class="col-md-9">
+               <input type="text" name="provider" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+
+                <label>Status</label>
+            </div>
+            
+            <div class="col-md-9">
+            <select name="status" class="form-control">
+                <option value="Pago">Pago</option>
+                <option value="Parcial">Parcial</option>
+                <option value="Em Aberto">Em Aberto</option>
+                <option value="Outror">Outro</option>
+            </select>
+            </div>
+          </div>
+
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Medida frente L1</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" placeholder="2.50" step="0.01" min="0" max="10" value="0" name="af1" class="form-control" />
+            </div>
+          </div>
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Medida frente L2</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" placeholder="2.51" step="0.01" min="0" max="10" value="2.51" name="af2" class="form-control" />
+            </div>
+          </div>
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Medida Meio L1</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" placeholder="2.52" step="0.01" min="0" max="10" value="0" name="am1" class="form-control" />
+            </div>
+          </div>
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Medida Meio L2</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" placeholder="2.53" step="0.01" min="0" max="10" value="0" name="am2" class="form-control" />
+            </div>
+          </div>
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Medida Parte de Traz L1</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" placeholder="2.54" step="0.01" min="0" max="10" value="0" name="at1" class="form-control" />
+            </div>
+          </div>
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Medida Parte de Traz L2</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" placeholder="2.55" step="0.01" min="0" max="10" value="0" name="at2" class="form-control" />
+            </div>
+          </div>
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Média</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" name="media" class="form-control" readonly/>
+            </div>
+          </div>
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Comprimento</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" placeholder="10.50" step="0.01" min="0" max="15" value="0" name="comprimento" class="form-control" />
+            </div>
+          </div>
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Largura</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" placeholder="3.52" step="0.01" min="0" max="5" value="0" name="largura" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label>Medida Total</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" name="totalmedida" class="form-control" readonly />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label>Preço Metro Cub.</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" placeholder="54.23" step="0.01" min="0"  max="100" value="0" name="pmc" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label>Valor Total</label>
+            </div>
+            <div class="col-md-9">
+               <input type="number" name="totalprice" class="form-control" readonly />
+            </div>
+          </div>         
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label>Data Compra</label>
+            </div>
+            <div class="col-md-9">
+               <input type="date" name="dtcompra" class="form-control" />
+            </div>
+          </div>         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Data Entrega</label>
+            </div>
+            <div class="col-md-9">
+               <input type="date" name="dtentrega" class="form-control" />
+            </div>
+          </div>
+         <div class="form-group row">
+            <div class="col-md-3">
+              <label>Obs</label>
+            </div>
+            <div class="col-md-9">
+               <input type="text" name="obs" class="form-control" />
+            </div>
+          </div>     
+          <button type="submit" class="btn btn-info" value="Gerar Expense">Cadastrar Compra</button> 
+     
+        </div>
+      </div>
+      <input type="hidden" name="token" value="{{.token}}">
+    </form>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+ $('input').focusout(function(){
+
+   var mtotal = parseFloat($("input[name='af1']").val())
+                +parseFloat($("input[name='af2']").val())
+                +parseFloat($("input[name='am1']").val())
+                +parseFloat($("input[name='am2']").val())
+                +parseFloat($("input[name='at1']").val())
+                +parseFloat($("input[name='at2']").val());
+   var mavaerage = (mtotal/6).toFixed(3); 
+   var total = mavaerage
+              *parseFloat($("input[name='comprimento']").val())
+              *parseFloat($("input[name='largura']").val());
+var totalcost = total
+                  *parseFloat($("input[name='pmc']").val());      
+
+   console.log(mavaerage);
+   console.log(total);
+   console.log(totalcost);
+   $("input[name='media']").val(mavaerage);
+   $("input[name='totalmedida']").val(total.toFixed(2)); 
+   $("input[name='totalprice']").val(totalcost.toFixed(2));
+ });
+});
+</script>
+  {{ template "Footer" }}
+{{ end }}

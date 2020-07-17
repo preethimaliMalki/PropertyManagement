@@ -1,0 +1,84 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+
+  {{ template "Header" }}
+<div class="card">
+  <h3 class="card-header">Cadastrar Beneficiários</h3>
+<div class="card-body">
+    <form method="POST" action="/benefic/store" enctype="multipart/form-data">
+      
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label>Nome da Empresa</label>
+            </div>
+            <div class="col-md-9">
+               <input type="text" name="compname" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+
+                <label>Tipo de Beneficiários</label>
+            </div>
+            
+            <div class="col-md-9">
+            <select name="types" class="form-control">
+                <option value="Utilidades ">Utilidades</option>
+                <option value="Fornecedor">Forncedor</option>
+                <option value="Colaborador">Colaborador</option>
+                <option value="Pro-laborer">Pro-laborer</option>
+                <option value="Manutenção">Manutenção</option>
+                <option value="Outors">Outros</option>
+            </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+                <label>Frequencia</label>
+            </div>
+            
+            <div class="col-md-9">
+            <select name="status" class="form-control">
+                <option value="Única">Única</option>
+                <option value="Diária">Diária</option>
+                <option value="Semanal">Semanal</option>
+                <option value="Quinzenal">Quinzenal</option>
+                <option value="Mensal">Mensal</option>
+                <option value="Anual">Anual</option>
+                <option value="Outras">outras</option>
+            </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">  
+              
+            <label> Escolha o Nome do Beneficiários </label>
+            </div>
+            
+            <div class="col-md-9">
+            <select name="cliente" class="form-control">
+              {{ range .BeneficCreate}}
+                <option value="{{.ID}}"> {{.Fname}} {{.Lname}}</option>
+              {{end}} 
+            </select>
+            
+            </div>
+          </div>
+              
+          <button type="submit" class="btn btn-info" value="Cadastrar">Cadastrar</button> 
+     
+        </div>
+      </div>
+      <input type="hidden" name="token" value="{{.token}}">
+    </form>
+    </div>
+</div>
+  
+  {{ template "Footer" }}
+{{ end }}

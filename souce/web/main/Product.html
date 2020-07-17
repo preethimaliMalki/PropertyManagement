@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {{template "Css"}}
+</head>
+
+<body>
+{{template "Menu"}}
+<div class="card">
+  <h3 class="card-header">Adcionar Produto</h3>
+  <div class="card-body">
+<div class="bs-example">
+  <a href="/product/create" class="nav-item nav-link disabled" tabindex="-1">
+   <div class="card pb-3 pl-3 pr-3">
+    <a class="far fa-plus-square btn btn-success" href="/product/create">&emsp;Adcionar Produto</a>
+    </div>
+<div class="bs-example">
+<table id="example" class="table table-striped table table-hover dt-responsive nowrap" cellspacing="0" style="width:100%">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Product Name</th>               
+              <th>Product Description</th>
+              <th>Valorunidade</th>
+              <th>Product cost</th>
+              <th>Pdatafabi</th> 
+              <th>pImg</th>             
+              <th>Status</th>
+              <th>Obs</th>
+              
+        		</tr>
+         </thead>
+       <tbody>
+    {{ range  .Products }}
+      <tr>        
+        <td>{{ .Id }} </td>        
+        <td>{{ .PName }} </td> 
+        <td>{{ .Pdescription }} </td> 
+        <td>{{ .Valorunidade }} </td>
+        <td>{{ .Product_cost }} </td> 
+        <td>{{ .Pdatafabi }} </td> 
+        <td><img width="100px" height="100px" src= "/images/{{.pImg}}" /></td>
+        <td>{{ .Status }} </td> 
+        <td>{{ .Obs }}</td>                      
+      </tr>
+    {{ end }}
+       </tbody>
+    </table>
+      </div>
+</div>
+</body>
+</html>

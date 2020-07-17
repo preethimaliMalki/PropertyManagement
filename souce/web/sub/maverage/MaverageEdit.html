@@ -1,0 +1,82 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+  {{ template "Header" }}
+<div class="card">
+  <h3 class="card-header">Editar Pedido De Lenha: {{ .MaverageEdit.ID }} &emsp;&emsp;<a class="btn btn-danger" href="/maveragedelete?mid={{ .MaverageEdit.ID }}">Apagar</a>&emsp;<a class="btn btn-info" href="/maverageshow?id={{ .MaverageEdit.ID }}">Ver</a></h3>
+   <div class="card-body">
+
+    <form method="POST" action="maverageupdate">
+      <input type="hidden" name="uid" value="{{ .MaverageEdit.ID }}" />
+      
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label>Nome da Empresa</label>
+            </div>
+            <div class="col-md-9">
+               <input type="text" name="provider" value="{{ .MaverageEdit.Provider }}"class="form-control" readonly/>
+            </div>
+          </div>
+
+ <div class="form-group row">
+        <div class="col-md-3">
+         <label> Status Atual </label>
+        </div>
+        
+        <div class="col-md-9">
+         {{ .MaverageEdit.Status }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3">  
+          
+        <label>Status </label>
+        </div>
+        
+        <div class="col-md-9">
+      <select name="status" class="form-control">
+  
+          <option value="pago"
+            {{if eq .MaverageEdit.Status "pago"}} selected {{end}}
+            >pago</option>
+          <option value="parcial"
+            {{if eq .MaverageEdit.Status "parcial"}}selected{{end}}>parcial</option>
+          <option value="em aberto"
+            {{if eq .MaverageEdit.Status "em aberto"}} selected {{end}}
+            >em aberto</option>
+        </select>
+        </div>
+      </div>
+          <div class="form-group row">
+        <div class="col-md-3">
+         <label> Data Entrega </label>
+        </div>
+        
+        <div class="col-md-9">
+          <input type="date" name="dtentrega"  class="form-control" value="{{ .MaverageEdit.Dtentrega }}"/><br />
+        </div>
+      </div>
+
+         <div class="form-group row">
+        <div class="col-md-3">
+          <label> Obs </label>
+        </div>
+        
+        <div class="col-md-9">
+          <textarea type="text" name="obs" class="form-control" value="{{ .MaverageEdit.Obs }}">{{ .MaverageEdit.Obs }}</textarea><br />
+        </div>
+      </div>
+        <button type="submit" class="btn btn-success">Alterar e Salvar</button>
+        </div>
+      </div>
+      <input type="hidden" name="token" value="{{.token}}">
+    </form>
+    </div>
+</div>
+<div class="dropdown-divider"></div>
+   {{ template "Footer" }}
+{{ end }}    

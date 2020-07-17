@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {{ template "Css"  }}
+</head>
+
+{{template "Menu"}}
+<body>
+    <div class="card">
+        <div class="col-md-12">
+        <div class="row mt-3">
+         <div class="col-sm-12 col-md-4 col-lg-3">
+             <div class="card text-white bg-primary mb-3">
+               <div class="card-header">
+          Clientes:<b> </b>
+          &emsp;|&emsp;
+          Ordens: <b></b>
+       </div>
+                 <div class="card-block">
+                     <h3 class="card-title"></h3>
+                     <div class="card-text ml-3 mb-3">
+                     Produtos:<b> </b>
+                     &emsp;|&emsp;
+                     Depesas:<b> </b>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         </br>
+         <div class="col-sm-6 col-md-4 col-lg-3">
+             <div class="card text-white bg-info">
+         <div class="card-header">
+         Status: <b>Pago</b>
+       </div>
+                 <div class="card-block">
+                     <h3 class="card-title"></h3>
+                     <div class="card-text ml-3 mb-3">
+                      Quant.: <b></b> | Vendas: <b>R$</b></h5>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-6 col-md-4 col-lg-3">
+             <div class="card text-white bg-warning">
+             <div class="card-header">
+         Status: <b>Parcial</b>
+       </div>
+                 <div class="card-block">
+                     <h3 class="card-title"></h3>
+                     <div class="card-text ml-3 mb-3">
+                     Quant.: <b></b> | Vendas: <b>R$00</b></h5>
+     
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-sm-6 col-md-4 col-lg-3">
+             <div class="card text-white bg-danger">
+             <div class="card-header">
+         Status: <b>Em Aberto</b>
+       </div>
+                 <div class="card-block">
+                     <h3 class="card-title"></h3>
+                     <div class="card-text ml-3 mb-3">
+                    Quant.: <b></b> | Vendas: <b>R$,00</b></h5>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+       </div>
+             <br>
+       <h3 class="card-header">Ordens de Pedidos &emsp;|&emsp; Total de Vendas: <b>R$</b></h3>
+     <br>
+     <div class="bs-example">
+     <table id="example" class="table table-striped table table-hover dt-responsive nowrap" cellspacing="0" style="width:100%">
+             <thead>
+                 <tr>
+             <th>Pedido</th>
+             <th>Data pedido</th>
+             <th>Produto</th>
+             <th>Quantidade</th>
+             <th>Valor Unidade</th>
+             <th>Valor Total</th>
+             <th>Data Fabricado</th>
+             <th>Data Entrega</th>
+             <th>Cliente</th>
+             <th>Status</th>
+             <th>Obs</td>
+              <th>Ações</th>
+              
+                           </tr>
+              </thead>
+            <tbody>
+           
+             <!-- <tr>
+               <td>{{ .Pedido }} </td>
+               <td>{{ .Datapedido }} </td> 
+               <td>{{ .Produto }} </td> 
+               <td>{{ .Quantidade }} </td> 
+               <td>{{ .Valorunidade }} </td> 
+               <td>{{ .Valortotal }} </td> 
+               <td>{{ .Datafabi }} </td> 
+               <td>{{ .Dataentrega }} </td> 
+               <td>{{ .Cliente }} </td> 
+               <td>{{ .Status }} </td> 
+               <td>{{ .Obs }} </td> 
+               <td><a href="/show?pedido={{ .Pedido }}">Ver</a> | <a href="/edit?pedido={{ .Pedido }}">Editar</a></td>
+             </tr> -->
+         
+            </tbody>
+            <!-- <tfoot>
+             <tr>
+             <th>Pedido</th>
+             <th>Data pedido</th>
+             <th>Produto</th>
+             <th>Quantidade</th>
+             <th>Valor Unidade</th>
+             <th>Valor Total</th>
+             <th>Data Fabricado</th>
+             <th>Data Entrega</th>
+             <th>Cliente</th>
+             <th>Status</th>
+             <th>Obs</td>
+              <th>Ações</th>
+                           </tr>
+               </tfoot>    
+         </table> -->
+     </div>
+     </div>
+     {{template "Footer"}}
+    
+</body>
+</html>

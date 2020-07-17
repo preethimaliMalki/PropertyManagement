@@ -1,0 +1,126 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+  {{ template "Header" }}
+<div class="card">
+  <h3 class="card-header">Cadastrar Despesa</h3>
+<div class="card-body">
+    <form method="POST" action="/expense/store" enctype="multipart/form-data">
+      
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label>Nome da Despesa</label>
+            </div>
+            <div class="col-md-9">
+               <input type="text" name="expensename" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+
+                <label>Tipo de Despesa</label>
+            </div>
+            
+            <div class="col-md-9">
+            <select name="types" class="form-control">
+                <option value="contas">contas</option>
+                <option value="folha pagamento">Folha de Pagamento</option>
+                <option value="boleto">boleto</option>
+                <option value="pro-laborer">pro-laborer</option>
+                <option value="outors">outros</option>
+            </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+             <label>Data Vencimento</label>
+            </div>
+            
+            <div class="col-md-9">
+              <input type="date" name="datedue" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+             <label>Data Pago</label>
+            </div>
+            
+            <div class="col-md-9">
+              <input type="date" name="datepaid" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+
+                <label>Status</label>
+            </div>
+            
+            <div class="col-md-9">
+            <select name="status" class="form-control">
+                <option value="Vencida">Conta Vencida</option>
+                <option value="Paga">Conta Paga</option>
+                <option value="Em Aberto">Conta Em Aberto</option>
+                <option value="Outro">outras</option>
+            </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label> Copia da Conta </label>
+            </div>
+            <div class="col-md-9">
+               <input type="file" name="bill_url" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label> Comprovante de Pagamento </label>
+            </div>
+            <div class="col-md-9">
+               <input type="file" name="receipt" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+             <label>Valor da Conta</label>
+            </div>
+            
+            <div class="col-md-9">
+              <input type="Number" name="payment" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">  
+              
+            <label> Beneficiario </label>
+            </div>
+            
+            <div class="col-md-9">
+            <select name="cliente" class="form-control">
+              <option selected>Selecione um Beneficiario</option>
+              {{ range .Clientes}}
+                <option value="{{.ID}}"> {{.Fname}} {{.Lname}}</option>
+              {{end}} 
+            </select>
+            
+            </div>
+          </div>
+              
+          <button type="submit" class="btn btn-info" value="Cadastrar">Cadastrar</button> 
+          <input type="hidden" name="token" value="{{.token}}">
+        </div>
+      </div>
+    </form>
+    </div>
+</div>
+  
+  {{ template "Footer" }}
+{{ end }}

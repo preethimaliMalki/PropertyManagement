@@ -1,0 +1,147 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+ {{ template "Header" }}
+<div class="card">
+  <h3 class="card-header">Registro do Pedido De Lenha: <b>{{ .ID }}</b> &emsp; <button onclick="printDiv('pdf','Recibo-de-dompra-de-lenhas')" class="btn btn-danger"><i class="fa fa-print"></i> Imprimir</button> &emsp; <a class="btn btn-info" href="/maverageedit?id={{ .MaverageShow.ID }}">Editar</a></h3>
+ <div class="card-body">
+ <div id="pdf">
+
+    <div class="toolbar hidden-print">
+        <div class="text-right">
+        </div>
+        <hr>
+    </div>
+    <div class="invoice overflow-auto">
+        <div style="min-width: 600px">
+            <header>
+                <div class="row">
+                    <div class="col">
+                        <a target="_blank" href="/maverage">
+                            <img src="http://142.44.242.215:9000/products/logo.jpg" data-holder-rendered="true" />
+                            </a>
+                    </div>
+                    <div class="col company-details">
+                        <h2 class="name">
+                            <a target="_blank" href="/maverage">
+                            Comp Name
+                            </a>
+                        </h2>
+                        <div>Engenheiro Calda, MG</div>
+                        <div>(33) 3234- 0000</div>
+                        <div>email@email.com</div>
+                        <div>email2@email.com</div>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="row contacts">
+                    <div class="col invoice-to">
+                        <div class="text-gray-light">Recibo Para:</div>
+                        <h2 class="to">{{ .MaverageShow.Provider }}</h2>
+                        
+                        <div class="email"><a href="mailto:"></a></div>
+                    </div>
+                    <div class="col invoice-details">
+                        <h1 class="invoice-id">Recibo: #{{ .MaverageShow.ID }}</h1>
+                        <div class="address">Status: {{ .MaverageShow.Status }}</div>
+                        <div class="date">Data: <b>{{ .MaverageShow.Dtcompra }} </b></div>
+                        <div class="date">Entrega: <b>{{ .MaverageShow.Dtentrega }}</b></div>
+                    </div>
+                </div>
+                 <div class="row">
+                 <div class="col-sm-8">
+                 <p class="card-text">Lado F. D: <b>{{ .MaverageShow.Af1 }}</b></p>
+                            <p class="card-text">Lado F. E: <b>{{ .MaverageShow.Af2 }}</b></p>
+                            <p class="card-text">Lado M. D: <b>{{ .MaverageShow.Am1 }}</b></p> 
+                            <p class="card-text">Lado M. E: <b>{{ .MaverageShow.Am2 }}</b></p> 
+                            <p class="card-text">Lado T. D: <b>{{ .MaverageShow.At1 }}</b></p> 
+                            <p class="card-text">Lado T. E: <b>{{ .MaverageShow.At2 }}</b></p> 
+                            <p class="card-text">Comprimento:<b>{{ .MaverageShow.Comprimento }}</b> </p> 
+                            <p class="card-text">Largura:<b>{{ .MaverageShow.Largura }}</b> </p>
+                 </div>
+                 <div class="col-sm-4">
+                  <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                        </tr>
+                        </thead>
+                    <tbody>
+                        <tr>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                           <td colspan="2"></td>
+                           <td colspan="2">Média </td>
+                            <td>{{ .MaverageShow.Media }} Metros</td>
+                            </tr>
+                            <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">Medida Total </td>
+                            <td>{{ .MaverageShow.Totalmedida }} Metros m³</td>
+                            </tr>
+                            <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">Preço m³ </td>
+                            <td>R${{ .MaverageShow.Pmc }}</td>
+                            </tr>
+                            <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">Total Geral </td>
+                            <td><b>R${{ .MaverageShow.Totalprice }} </b></td>
+                         </tr>
+                    </tfoot>
+                </table>
+                </div>
+               </div> 
+               
+<br>
+                <div class="notices">
+                    <div>Obs:</div>
+                    <div class="notice"><b>{{ .MaverageShow.Obs }}</b></div>
+        <br>
+            </main>
+            <br>
+            <footer>
+                Assinatura.
+            </footer>
+        </div>
+        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+        <div></div>
+    </div>
+</div>              
+</div>
+</div>
+{{ template "Js" }}
+<script>
+var doc = new jsPDF();
+
+ function saveDiv(divId, title) {
+ doc.fromHTML(`<html><head><title>${title}</title></head><body>` + document.getElementById(divId).innerHTML + `</body></html>`);
+ doc.save('compradelenha.pdf');
+}
+
+function printDiv(divId,
+  title) {
+
+  let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+
+  mywindow.document.write(`<html><head><title>${title}</title>`);
+  mywindow.document.write('</head><body >');
+  mywindow.document.write(document.getElementById(divId).innerHTML);
+  mywindow.document.write('</body></html>');
+
+  mywindow.document.close(); // necessary for IE >= 10
+  mywindow.focus(); // necessary for IE >= 10*/
+
+  mywindow.print();
+  mywindow.close();
+
+  return true;
+}
+
+</script>
+
+   {{ template "Footer" }}
+{{ end }}    

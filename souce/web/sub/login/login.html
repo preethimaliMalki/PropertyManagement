@@ -1,0 +1,31 @@
+{{define "title"}}Login{{end}}
+{{define "head"}}{{end}}
+{{define "content"}}
+
+<div class="container">
+	<div class="page-header">
+		<h1>LOg In Page</h1>
+	</div>
+	<form method="POST" action="/login" enctype="multipart/form-data">
+		<div class="form-group">
+			<label for="email">Email Address</label>
+			<div><input type="email" class="form-control" id="email" name="email" maxlength="48" placeholder="Email" value="{{.email}}" /></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="password">Password</label>
+			<div><input type="password" class="form-control" id="password" name="password" maxlength="48" placeholder="Password" value="{{.password}}" /></div>
+		</div>
+		
+		<input type="submit" class="btn btn-primary" value="Login" class="button" />
+		
+		
+	</form>
+	
+
+	
+	
+</div>
+
+{{end}}
+{{define "foot"}}{{end}}

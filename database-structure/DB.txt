@@ -1,0 +1,311 @@
+DROP DATABASE `cakesdb`;
+CREATE DATABASE `cakesdb`;
+USE `cakesdb`;
+CREATE TABLE `benefics` (
+  `id` int(7) NOT NULL,
+  `types` varchar(30) DEFAULT null,
+  `status` varchar(30) DEFAULT null,
+  `compname` varchar(55) DEFAULT null,
+  `client_id` int(11) DEFAULT null,
+  `data_criado` timestamp DEFAULT 0 DEFAULT current_timestamp(),
+  CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+CREATE TABLE `brands` (
+  `id` int(11)not null,
+  `brand` varchar(50) ,
+  `description` varchar(200) ,
+  `img` varchar(200) ,
+  `sub_category_id` int(11),
+  `model_id` int(11),
+  CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB ;
+CREATE TABLE `category` (
+  `id` int(11) not null,
+  `category` varchar(50) ,
+  `description` varchar(200) ,
+  `img` varchar(200) ,
+  `sector_id` int(11),
+  CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB ;
+CREATE TABLE `cheques` (
+  `id` int(7) NOT NULL,
+  `numero` int(12) ,
+  `data` datetime ,
+  `valor` int(12) ,
+  `destino` int(14),
+  `vencimento` datetime ,
+  `cliente` varchar(15) ,
+  `beneficiario` varchar(15) ,
+  `banco` varchar(25) ,
+  `agencia` int(9) ,
+  `conta` int(10) ,
+  `copia` varchar(25) ,
+  `obs` varchar(255),
+   CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB ;
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE `clientes` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_list_id` int(11) ,
+  `fname` varchar(30) ,
+  `lname` varchar(30) ,
+  `cellnumber` int(14) ,
+  `address` varchar(150),
+  `status` varchar(15) ,
+  `obs` varchar(255) ,
+  CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+CREATE TABLE `order_list` (
+  `id` int(7) NOT NULL,
+  `order_id` int(11) ,
+  `Date` varchar(30) ,
+  `ammount` varchar(30) ,
+  `product_id` int(14) ,
+  `status` varchar(15) ,
+  `obs` varchar(255),
+  CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB ;
+CREATE TABLE `contas_areceber` (
+  `Número` varchar(8) ,
+  `Emissão` date ,
+  `Status` varchar(9),
+  `Cliente` varchar(57) ,
+  `Forma_pagto` varchar(16) ,
+  `Valor` varchar(10) ,
+  `Valor_recebido` varchar(10) ,
+  `Saldo` varchar(9) ,
+  `Último_recebto` date
+) ENGINE=InnoDB ;
+CREATE TABLE `contas_recebidas` (
+  `ID` int(11) not null,
+  `Cliente` varchar(65) ,
+  `Baixa` date ,
+  `Emissão` date ,
+  `Status` varchar(15) ,
+  `Valor_recebido` varchar(12) ,
+  `Forma_de_pagamento` varchar(16) ,
+  `Método` varchar(45)
+) ENGINE=InnoDB ;
+CREATE TABLE `expenses` (
+  `id` int(7) NOT NULL,
+  `types` varchar(30) ,
+  `status` varchar(30),
+  `bill_url` varchar(255),
+  `recepit` varchar(255) ,
+  `payment` decimal(7,2) ,
+  `client_id` int(11) ,
+  `datedue` datetime ,
+  `datepaid` datetime,
+  `name` varchar(255),
+   CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB ;
+INSERT INTO `expenses` (`id`, `types`, `status`, `bill_url`, `recepit`, `payment`, `client_id`, `datedue`, `datepaid`, `name`) VALUES
+(2, "payroll", "em aberto", "./expenses/0Capture.PNG", "a", "234.00", 3, "2020-03-06 00:00:00", "2020-03-14 00:00:00", "aa"),
+(3, "bills", "Liquidado", "./expenses/1Capture.PNG", "q", "9.00", 4, "2020-03-22 00:00:00", "2020-03-20 00:00:00", "aa");
+CREATE TABLE `setor3f_vendidos` (
+  `ID` int(11) not null,
+  `Descrição` varchar(22) ,
+  `UN` varchar(2) ,
+  `Pedido` int(11) ,
+  `Número_NF` int(11),
+  `Emissão` date ,
+  `Valor_total_liquido` ,
+  `Valor_total` varchar(8),
+  `Grupo_item` varchar(30),
+  `Status` varchar(10)
+) ENGINE=InnoDB ;
+CREATE TABLE `itens_vendidos_setor1m` (
+  `ID` int(9) ,
+  `Descrição` varchar(55),
+  `UN` varchar(2),
+  `Pedido` int(11),
+  `Número_NF` int(11) ,
+  `Emissão` date ,
+  `Valor_total_liquido` varchar(8) ,
+  `Valor_total` varchar(8) ,
+  `Grupo_item` varchar(30),
+  `Status` varchar(10)
+) ENGINE=InnoDB ;
+CREATE TABLE `itens_vendidos_setor2v` (
+  `ID` varchar(9) ,
+  `Descrição` varchar(55) ,
+  `UN` varchar(2) ,
+  `Pedido` int(11) ,
+  `Número_NF` int(11) ,
+  `Emissão` date ,
+  `Valor_total_liquido` varchar(8) ,
+  `Valor_total` varchar(8) ,
+  `Grupo_item` varchar(30) ,
+  `Status` varchar(10)
+) ENGINE=InnoDB;
+CREATE TABLE `maverage` (
+  `id` int(7) UNSIGNED DEFAULT null,
+  `provider` varchar(35) DEFAULT null,
+  `af1` int(7) NOT NULL,
+  `af2` int(7) NOT NULL,
+  `am1` int(7) NOT NULL,
+  `am2` int(7) NOT NULL,
+  `at1` int(7) NOT NULL,
+  `at2` int(7) NOT NULL,
+  `media` int(7) NOT NULL,
+  `largura` int(7) NOT NULL,
+  `comprimento` int(7) NOT NULL,
+  `pmc` int(7) ,
+  `totalmedida` int(7) NOT NULL,
+  `totalprice` int(7) NOT NULL,
+  `dtcompra` date,
+  `dtentrega` date ,
+  `status` varchar(15) ,
+  `obs` text,
+  `data_criado` timestamp  DEFAULT current_timestamp(),
+   CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `maverage` (`id`, `provider`, `af1`, `af2`, `am1`, `am2`, `at1`, `at2`, `media`, `largura`, `comprimento`, `pmc`, `totalmedida`, `totalprice`, `dtcompra`, `dtentrega`, `status`, `obs`, `data_criado`) VALUES
+(1, "pia cozinha", 3, 2, 3, 3, 3, 2, 3, 11, 3, 3, 87, 222, "2020-03-03", "2020-03-05", "Liquidado", "pedra branca", "2020-03-04 21:00:01"),
+(2, "Vidro verde 6mm", 3, 2, 3, 3, 3, 3, 3, 10, 3, 3, 82, 206, "2020-04-05", "2020-03-07", "Liquidado", "Janela", "2020-03-05 21:00:02"),
+(3, "forros", 2, 2, 3, 3, 3, 2, 3, 11, 3, 3, 89, 222, "2020-03-03", "2020-03-05", "Liquidado", "forro normal", "2020-03-04 21:00:01");
+CREATE TABLE `models` (
+  `id` int(11) DEFAULT null,
+  `brand_id` varchar(50) DEFAULT null,
+  `model` varchar(50) DEFAULT null,
+  `description` varchar(200) DEFAULT null,
+  `img` varchar(200) DEFAULT null,
+   CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+CREATE TABLE `note` (
+  `id` int(10) UNSIGNED DEFAULT null,
+  `content` text DEFAULT null,
+  `user_id` int(10) UNSIGNED DEFAULT null,
+  `created_at` timestamp DEFAULT 0 DEFAULT current_timestamp(),
+  `updated_at` timestamp DEFAULT 0 DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted` tinyint(1) ,
+   CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `options` (
+  `id` int(7) UNSIGNED DEFAULT null,
+  `opname` varchar(10) DEFAULT null,
+  `opdescription` text DEFAULT null,
+  `opdatafabi` int(7) NOT NULL,
+  `opvalorunidade` date DEFAULT null,
+  `oppimg` varchar(30) DEFAULT null,
+  `opcost` int(7) NOT NULL,
+  `status` varchar(15) DEFAULT null,
+  `obs` text DEFAULT 0,
+  `data_criado` timestamp DEFAULT 0 DEFAULT current_timestamp(),
+  CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `ordem_status` (
+  `id` int(2) UNSIGNED DEFAULT null,
+  `status` varchar(25) DEFAULT null,
+  `created_at` timestamp DEFAULT 0 DEFAULT current_timestamp(),
+  `updated_at` timestamp DEFAULT 0 DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted` tinyint(1) UNSIGNED DEFAULT 0 DEFAULT 0,
+   CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `ordem_status` (`id`, `status`, `created_at`, `updated_at`, `deleted`) VALUES
+(1, "novo", "2020-05-31 05:42:07", "2020-05-31 05:42:07", 0),
+(2, "preparo", "2020-05-31 05:42:07", "2020-05-31 05:42:07", 0),
+(3, "producao", "2020-05-31 05:42:07", "2020-05-31 05:42:07", 0),
+(4, "acabamento", "2020-05-31 05:42:07", "2020-05-31 05:42:07", 0),
+(5, "pronto", "2020-05-31 05:42:07", "2020-05-31 05:42:07", 0),
+(6, "entregue", "2020-05-31 05:42:07", "2020-05-31 05:42:07", 0),
+(7, "retirou", "2020-05-31 05:42:07", "2020-05-31 05:42:07", 0),
+(8, 'completo', '2020-05-31 05:42:07', '2020-05-31 05:42:07', 0),
+(9, "parado", "2020-05-31 05:42:07", "2020-05-31 05:42:07", 0),
+(10, "cancelado", "2020-05-31 05:42:07", "2020-05-31 05:42:07", 0);
+DROP TABLE IF EXISTS ordens;
+CREATE TABLE `ordens` (
+  `pedido` int(7) NOT NULL,
+  `datapedido` varchar (10) DEFAULT 0,
+  `produto` varchar (10)  DEFAULT 0,
+  `quantidade` int(3) DEFAULT 0,
+  `valorunidade` decimal(7,2) DEFAULT 0,
+  `valortotal` decimal(7,2) DEFAULT 0,
+  `valorrecebido` decimal(7,2) DEFAULT 0,
+  `saldo` decimal(7,2) DEFAULT 0,
+  `datafabi` varchar(20) DEFAULT 0,
+  `dataentrega` varchar (10) DEFAULT 0,
+  `ultimopg` varchar (10) DEFAULT 0,
+  `cliente` varchar(50) DEFAULT 0,
+  `status` varchar(15) DEFAULT 0,
+  `formapg` varchar(15) DEFAULT 0,
+  `statuspedido` varchar(15) DEFAULT 0,
+  `obs` varchar(255) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+INSERT INTO `ordens` (`pedido`, `datapedido`, `produto`, `quantidade`, `valorunidade`, `valortotal`, `valorrecebido`, `saldo`, `datafabi`, `dataentrega`, `ultimopg`, `cliente`, `status`, `formapg`, `statuspedido`, `obs`) VALUES
+(1, "2020-03-03", "Pedra", 2, "10.00", "20.00", "6.00", "2023.00", "0000-00-00 00:00:00", "0000-00-00", "0000-00-00", "0", "Liquidado", "a", "b", "c"),
+(2, "2020-03-03", "Pedra", 10, "3.00", "30.00", "111.00", "111.00", "0000-00-00 00:00:00", "0000-00-00", "0000-00-00", "1", "Liquidado", "a", "b", "c"),
+(3, "2020-03-04", "forro", 1, "10.00", "10.00", "111.00", "111.00", "0000-00-00 00:00:00", "0000-00-00", "0000-00-00", "1", "Liquidado", "a", "b", "c"),
+(4,"2020-03-05", "Vidro", 10, "4.00", "40.00","111.00", "111.00", "0000-00-00 00:00:00", "0000-00-00", "0000-00-00", "1", "Aberto", "a", "b", "c"),
+(5, "2020-03-05", "Pedra", 1, "7.00", "7.00", "111.00", "111.00", "0000-00-00 00:00:00", "0000-00-00", "0000-00-00", "1","Parcial", "a", "b", "c");
+DROP TABLE IF EXISTS `produtos`;
+CREATE TABLE `produtos` (
+  `id` int(7) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `pname` varchar(25) ,
+  `pdescription` varchar(255),
+  `valorunidade` decimal(7,2),
+  `product_cost` decimal(7,2),
+  `pdatafabi` varchar(10) ,
+  `pimg` varchar(30),
+  `status` varchar(15) ,
+  `obs` varchar(255) ,
+  `sector_id` int(11) ,
+  `category_id` int(11),
+  `category_sub_id` int(11),
+  `brand_id` int(11) ,
+  `model_id` int(11) ,
+  CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+CREATE TABLE `registration` (
+  `id` int(7) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `username` varchar(15) ,
+  `password` varchar(150) ,
+  `email` varchar(30) ,
+  `cellnumber` int(15) ,
+  `status` varchar(15) ,
+  `role` varchar(25) ,
+  `obs` varchar(255),
+  CONSTRAINT PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+CREATE TABLE `sector` (
+  `id` int(11) DEFAULT 0,
+  `sector` varchar(50) DEFAULT 0,
+  `category` varchar(50) DEFAULT 0,
+  `description` varchar(200) DEFAULT 0,
+  `img` varchar(200) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+CREATE TABLE `sub_category` (
+  `id` int(11) DEFAULT 0,
+  `category` varchar(50) DEFAULT 0,
+  `sub_category` varchar(50) DEFAULT 0,
+  `description` varchar(200) DEFAULT 0,
+  `img` varchar(200) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+INSERT INTO `sub_category` (`id`, `category`, `sub_category`, `description`, `img`) VALUES
+(1, "1", "sub_category_1", "aa", ""),
+(2, "2", "sub_category_2", "bb", "");
+CREATE TABLE `user` (
+  `id` int(10) UNSIGNED DEFAULT 0,
+  `first_name` varchar(50) DEFAULT 0,
+  `last_name` varchar(50) DEFAULT 0,
+  `email` varchar(100) DEFAULT 0,
+  `password` char(60) DEFAULT 0,
+  `status_id` tinyint(1) UNSIGNED DEFAULT 0 DEFAULT 1,
+  `created_at` timestamp DEFAULT 0 DEFAULT current_timestamp(),
+  `updated_at` timestamp DEFAULT 0 DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted` tinyint(1) UNSIGNED DEFAULT 0 DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `users` (
+  `id` int(11) DEFAULT 0,
+  `username` varchar(50) DEFAULT 0,
+  `first_name` varchar(200) DEFAULT 0,
+  `last_name` varchar(200) DEFAULT 0,
+  `password` varchar(120) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+CREATE TABLE `user_status` (
+  `id` tinyint(1) UNSIGNED DEFAULT 0,
+  `status` varchar(25) DEFAULT 0,
+  `created_at` timestamp DEFAULT 0 DEFAULT current_timestamp(),
+  `updated_at` timestamp DEFAULT 0 DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `deleted` tinyint(1) UNSIGNED DEFAULT 0 DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

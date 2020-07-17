@@ -1,0 +1,95 @@
+{{ define "Menu" }}
+<!------ Include the above in your HEAD tag ---------->
+
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-success">
+  <a class="navbar-brand" href="/">Gerenciador</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">
+          <i class="fa fa-home"></i>
+          Home
+          <span class="sr-only">(current)</span>
+          </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/new">
+          <i class="fa fa-list-alt">
+          </i>
+          Pedidos
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/loadAllClient">
+          <i class="fa fa-user-plus ">
+            <span class="badge badge-warning"></span>
+          </i>          
+          Clientes
+        </a>
+      </li>
+     <li class="nav-item">
+        <a class="nav-link " href="/loadAllProduct">
+          <i class="fa fa-window-restore">
+            <span class="badge badge-warning"></span>
+          </i>
+          Produtos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/expense">
+          <i class="fa fa-area-chart">
+            <span class="badge badge-warning"></span>
+          </i>
+          Despesas
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/maverage">
+          <i class="fa fa-tree">
+            <span class="badge badge-warning"></span>
+          </i>
+          Lenhas
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/benefic">
+          <i class="fa fa-handshake">
+            <span class="badge badge-warning"></span>
+          </i>
+          Beneficiários
+        </a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link " href="/loadAllUser">
+          <i class="fa fa-user-plus">
+            <span class="badge badge-warning"></span>
+          </i>
+          Usuarios
+        </a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link " href="/cheque">
+          <i class="fa fa-exchange">
+            <span class="badge badge-warning"></span>
+          </i>
+          Cheques
+        </a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link " href="/logout">
+          <i class="fa fa-sign-out">
+            <span class="badge badge-warning"></span>
+          </i>
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+{{ end }}
+

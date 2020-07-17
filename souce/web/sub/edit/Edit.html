@@ -1,0 +1,148 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+  {{ template "Header" }}
+  {{ template "Modal" }}
+<div class="card">
+  <h3 class="card-header">Editar Pedido: {{ .editres.Pedido }} &emsp;&emsp;<a class="btn btn-danger" href="/delete?pedido={{ .editres.Pedido }}">Apagar</a>&emsp;<a class="btn btn-info" href="/show?pedido={{ .editres.Pedido }}">Ver</a></h3>
+   <div class="card-body">
+
+    <form method="POST" action="/update" enctype="multipart/form-data">
+      <input type="hidden" name="upedido" value="{{ .editres.Pedido }}" />
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label> Data Pedido </label>
+        </div>
+        
+        <div class="col-md-9">
+           <input type="date" name="datapedido" class="form-control" value="{{ .editres.Datapedido }}" required/><br />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label> Produto </label>
+        </div>
+         
+
+        <div class="col-md-9">
+          <select class="form-control" name="produto">
+            <option selected>Selecione um produto</option>
+            {{ range .editres.Produtos}}
+            <option value="{{.Pname}}"> {{ .Pname }}</option>
+            {{ end }}
+          </select>
+          
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-3">
+         <label> Quantidade </label>
+        </div>
+        
+        <div class="col-md-9">
+         <input type="number" name="quantidade" class="form-control" value="{{ .editres.Quantidade }}" required/><br />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3">
+         <label> Valor Unidade </label>
+        </div>
+        
+        <div class="col-md-9">
+           <input type="number" name="valorunidade" class="form-control" value="{{ .editres.Valorunidade }}" required/><br />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-3">
+           <label> Valor Total </label>
+        </div>
+        
+        <div class="col-md-9">
+         <input type="number" name="valortotal"  class="form-control" value="{{ .editres.Valortotal }}" required/><br />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label> Data Fabricado </label>
+         </div>
+        
+        <div class="col-md-9">
+          <input type="date" name="datafabi" class="form-control" value="{{ .editres.Datafabi }}" required/><br />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3">
+         <label> Data Entrega </label>
+        </div>
+        
+        <div class="col-md-9">
+          <input type="date" name="dataentrega"  class="form-control" value="{{ .editres.Dataentrega }}" required/><br />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3">  
+          
+          <label> Cliente </label>
+        </div>
+        
+        <div class="col-md-9">
+        <select name="cliente" class="form-control">
+          <option selected>Selecione um client</option>
+          {{ range .editres.Clientes}}
+             <option value="{{.Fname}} {{.Lname}}"> {{.Fname}} {{.Lname}}</option>
+          {{end}} 
+        </select>
+        
+        </div>
+     </div>
+     
+       <div class="form-group row">
+        <div class="col-md-3">
+         <label> Status Atual </label>
+        </div>
+        
+        <div class="col-md-9">
+         {{ .editres.Status }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3">  
+          
+        <label>Status </label>
+        </div>
+        
+        <div class="col-md-9">
+      <select name="status" class="form-control">
+  
+          <option value="pago"
+            {{if eq .editres.Status "pago"}} selected {{end}}
+            >Pago</option>
+          <option value="parcial"
+            {{if eq .editres.Status "parcial"}}selected{{end}}>Parcial</option>
+          <option value="em aberto"
+            {{if eq .editres.Status "em aberto"}} selected {{end}}
+            >Em Aberto</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label> Obs </label>
+        </div>
+        
+        <div class="col-md-9">
+          <textarea type="text" name="obs" class="form-control" value="{{ .editres.Obs }}" required>{{ .editres.Obs }}</textarea><br />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Alterar e Salvar</button>
+      <input type="hidden" name="token" value="{{.token}}">
+    </form>
+    </div>
+</div>
+  {{ template "Footer" }}
+{{ end }}

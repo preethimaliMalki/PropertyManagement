@@ -1,0 +1,73 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+
+  {{ template "Header" }}
+
+<div class="card">
+  <h3 class="card-header">Cheques</h3>
+<div class="card-body">
+  <div class="card pb-3 pl-3 pr-3">
+    <a class="far fa-plus-square btn btn-success" href="/cheque/create">&emsp;Adcionar Cheques</a>
+  <div>     
+<div class="bs-example">
+ <a href="/client/create" class="nav-item nav-link disabled" tabindex="-1">
+<div class="bs-example">
+<table id="example" class="table table-striped table table-hover dt-responsive nowrap" cellspacing="0" style="width:100%">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Numero</th>
+              <th>Data</th>
+              <th>Valor</td>
+              <th>Destino</th>
+              <th>Vencimento</th>
+              <th>Cliente</td>
+              <th>Beneficiário</td>
+              <th>Banco</td>
+              <th>Agência</td>
+              <th>Conta</td>
+              <th>Cópia</td>
+              <th>Obs</td>
+						</tr>
+         </thead>
+       <tbody>
+
+   
+    {{ range .Cheque}}
+
+      <tr>
+        <td>{{ .ID }} </td>
+        <td>{{ .Numero }} </td> 
+        <td>{{ .Data }} </td> 
+        <td>{{ .Valor }} </td> 
+        <td>{{ .Destino }} </td> 
+        <td>{{ .Vencimento }} </td>
+        <td>{{ .Cliente }} </td> 
+        <td>{{ .Beneficiario }} </td> 
+        <td>{{ .Banco }} </td> 
+        <td>{{ .Agencia }} </td> 
+        <td>{{ .Conta }} </td> 
+        <td><a href="{{ .Copia }}">{{ .Copia }}</a> </td>
+        <td>{{ .Obs }} </td> 
+      </tr>
+    {{ end }}
+       </tbody>
+    </table>
+
+{{ template "Js" }}
+<script>
+	$(document).ready(function() {
+	    var table = $('#example').DataTable( {
+	        lengthChange: false,
+	        buttons: [ 'csv', 'pdf', 'colvis' ]
+	    } );
+	 
+	    table.buttons().container()
+	        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+	} );
+     </script>
+</div>
+<div class="dropdown-divider"></div>
+   {{ template "Footer" }}
+{{ end }}

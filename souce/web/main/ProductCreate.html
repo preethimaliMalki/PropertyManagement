@@ -1,0 +1,248 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {{template "Css"}}
+  <style>            
+    .product_lable{
+        font-size: 18px;
+        color: black;
+        font-weight: 400;
+      }   
+      #clock{
+        background-image:url('');
+        background-size:cover;
+        background-position: center;
+        height: 250px; width: 250px;
+        border: 1px solid #bbb;
+    }
+  </style>
+</head>
+<body >
+  
+  {{template "Menu"}}
+<div class="card">
+  <h3 class="card-header">Adcionar Produto</h3>
+  <div class="card-body">      
+   
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+          <form method="POST" action="/addProduct" enctype="multipart/form-data">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label> Imagem do Produto </label>
+            </div>
+            <div class="col-md-9">
+               <input type="file" id="pimgTxt" name="pimg"  class="form-control" />
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label class="product_lable"> Nome do Produto </label>
+            </div>
+            <div class="col-md-9">
+               <input id="nameTXt" type="text" name="pname" class="form-control" />
+            </div>
+          </div>         
+
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label class="product_lable"> Detalhe do Produto</label>
+            </div>
+            <div class="col-md-9">
+               <input id="pdTxt" type="text" name="pdescription" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+             <label class="product_lable">Valor Unidade</label>
+            </div>
+            
+            <div class="col-md-9">
+              <input id="unit" type="text" name="valorunidade" class="form-control" />
+            </div>
+          </div>
+    
+           <div class="form-group row">
+            <div class="col-md-3">
+             <label class="product_lable">Custo do Produto</label>
+            </div>
+            
+            <div class="col-md-9">
+              <input id="cost" type="text" name="product_cost" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+             <label class="product_lable">Data Frabricado</label>
+            </div>
+            
+            <div class="col-md-9">
+              <input id="manData" type="text" name="pdatafabi" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+                <label class="product_lable"> Tipo </label>
+            </div>
+            <div class="col-md-9">
+            <select id="state" name="status" class="form-control">
+                <option selected>Selecione um status</option>
+                <option value="preimera">Primera</option>
+                <option value="segunda">Segunda</option>
+                <option value="em outros">Outros</option>
+            </select>
+            </div>
+          </div>
+
+          <!-- department select -->
+          <div class="form-group row">
+            <div class="col-md-3">
+                <label class="product_lable"> Departamento </label>
+            </div>
+            <div class="col-md-9">
+              <select id="sect" name="sector" id="sector" class="form-control">
+                <option selected>Selecione um status</option>
+               
+                <option >1</option>
+                <option >2</option>
+                <option >3</option>
+               
+              </select>
+            </div>
+          </div>
+
+          <!-- category select -->
+          <div class="form-group row">
+            <div class="col-md-3">
+                <label class="product_lable"> Categoria </label>
+            </div>
+            <div class="col-md-9">
+              <select name="category" id="category" class="form-control">
+                <option >1</option>
+                <option >2</option>
+                <option >3</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- sub-category select -->
+          <div class="form-group row">
+            <div class="col-md-3">
+                <label class="product_lable"> Subcategoria </label>
+            </div>
+            <div class="col-md-9">
+              <select name="sub-category" id="subcategory" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Brand select -->
+          <div class="form-group row">
+            <div class="col-md-3">
+                <label class="product_lable"> Marca </label>
+            </div>
+            <div class="col-md-9">
+              <select name="brand" id="brand" class="form-control">
+                <option>1</option>
+                <option >2</option>
+                <option >3</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Model select -->
+          <div class="form-group row">
+            <div class="col-md-3">
+                <label class="product_lable"> Modelo </label>
+            </div>
+            <div class="col-md-9">
+              <select name="model" id="model" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+              </select>
+            </div>
+          </div>
+        
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label class="product_lable"> Obs </label>
+            </div>
+            <div class="col-md-9">
+              <textarea type="text" id="obs" name="obs" class="form-control"></textarea><br />
+            </div>
+          </div>
+          <button type="submit" id="addProduct" class="btn btn-info" value="Gerar Producto">Gerar Producto</button> 
+     
+        </div>
+      </div>
+      <input type="hidden" name="token" value="{{.token}}">
+    </form>
+  </div>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  // var imgname="";
+  // document.getElementById('getval').addEventListener('change', readURL, true);
+  //   function readURL(){
+  //       var file = document.getElementById("getval").files[0];
+  //       var reader = new FileReader();
+  //       reader.onloadend = function(){
+  //           document.getElementById('clock').style.backgroundImage = "url(" + reader.result + ")";
+  //       }
+  //       if(file){
+  //           reader.readAsDataURL(file);
+  //       }else{
+  //       }
+  //   imgname=$('#getval').val();
+
+  //   alert("Image is : "+imgname);
+  // }
+  
+  // $('#addProduct').click(function(){
+
+  //       var id =$('#idTXt').val();
+  //       var pname =$('#nameTXt').val();
+  //       var pdescription = $('#pdTxt').val();
+  //       var valorunidade = parseFloat($('#unit').val());
+  //       var product_cost = parseFloat($('#cost').val());
+  //       var pdatafabi =$('#manData').val();
+  //       var pImg = $('#pimgTxt').val();
+  //       var status =$('#state').val();
+  //       var obs =$('#obs').val();
+
+  //       var sector_id = parseInt($('#sect').val());
+  //       var category_id = parseInt($('#category').val()); 
+  //       var category_sub_id =parseInt($('#subcategory').val());
+  //       var brand_id = parseInt($('#brand').val());
+  //       var model_id =parseInt($('#model').val());
+
+        
+        
+  //   $.ajax({
+  //     url:"/addProduct",
+  //     method:"post",
+  //     dataType:"json",
+  //     data:{ID:id,Name:pname,Dec:pdescription,Val:valorunidade,Cost:product_cost,Fabi:pdatafabi,Img:pImg,Sta:status,OB:obs,Sec:sector_id,Cat:category_id,CatSub:category_sub_id,Barnd:brand_id,Model:model_id},
+     
+  //   }).done(function(response){
+  //       alert("Succes");
+  //   }).fail(function(resp){
+  //       alert("Succes");
+  //   })
+  // })
+
+  
+</script>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    {{ template "Css"  }}
+    <style>            
+      .cus_lable{
+          font-size: 20px;
+          color: black;
+          font-weight: 300;
+        }   
+    
+    </style>
+  </head>
+<body>
+  {{template "Menu"}}
+  <span class="d-block p-2">
+    <div class="container-fluid">
+  
+<div class="card">
+  <h3 class="card-header">Adcionar Cliente</h3>
+  <div class="card-body">
+<!-- //enctype="multipart/form-data" -->
+    <form method="POST" action="/addClient" >
+       <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">         
+            
+        <div class="form-group row">
+            <div class="col-md-3">
+               <label class="cus_lable">Order List Id</label>
+            </div>
+
+            <div class="col-md-9">
+               <input class="form-control" type="number" name="orderListId" value= readonly />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+               <label class="cus_lable"> First name </label>
+            </div>
+
+            <div class="col-md-9">
+               <input class="form-control" type="text" name="fname" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+           <div class="col-md-3">
+            <label class="cus_lable"> Last name </label>
+           </div>  
+           <div class="col-md-9">
+            <input class="form-control" type="text" name="lname" />
+            </div>
+          </div>
+
+           <div class="form-group row">
+            <div class="col-md-3">
+              <label class="cus_lable"> CellNumber</label>
+            </div>
+            <div class="col-md-9">
+              <input class="form-control" type="tel" name="cellnumber" />
+            </div>
+           
+          </div>
+
+          <div class="form-group row">
+          <div class="col-md-3">
+            <label class="cus_lable"> Address</label>
+          </div>
+          <div class="col-md-9">
+            <input class="form-control" type="text" name="address" />
+          </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-3">
+               <label class="cus_lable"> Status </label>
+            </div>
+
+            <div class="col-md-9">
+               <input class="form-control" type="text" name="status" value="ativo" readonly/>
+            </div>
+          </div>
+
+      <div class="form-group row">
+      <div class="col-md-3">
+      <label class="cus_lable"> Obs </label>
+      </div>
+      <div class="col-md-9">
+      <textarea type="text" class="form-control" name="obs" value="seu texto aqui"></textarea><br /><br />
+      </div>
+      </div>
+       <button type="submit" class="btn btn-info" value="Cadastrar">Cadastrar</button> 
+                </div>
+            </div>
+            <input type="hidden" name="token" value="{{.token}}">
+    </form>
+      </div>
+</div>     
+</body>
+</html>
+
+

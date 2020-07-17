@@ -1,0 +1,51 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+  {{ template "Header" }}
+<div class="card">
+  <h3 class="card-header">Beneficiários</h3>
+<div class="card-body">
+   <div class="card pb-3 pl-3 pr-3">
+ <a class="far fa-plus-square btn btn-success" href="/benefic/create">&emsp;<b> Adcionar Beneficiários</b></a>
+ </div> 
+    
+<div class="bs-example">
+<table id="example" class="table table-striped table table-hover dt-responsive nowrap" cellspacing="0" style="width:100%">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Tipo</th>
+              <th>Status</th>
+              <th>Beneficiários</th>
+            </tr>
+         </thead>
+       <tbody>
+      
+      {{ range .Benefic}}
+        <tr>
+          <td>{{ .ID }} </td>
+          <td>{{ .Types }} </td> 
+          <td>{{ .Status }} </td> 
+          <td>{{ .Fname }} {{ .Lname }} | {{ .Compname }} </td> 
+         
+        </tr>
+    {{ end }}
+       </tbody>
+    </table>
+
+{{ template "Js" }}
+<script>
+	$(document).ready(function() {
+	    var table = $('#example').DataTable( {
+	        lengthChange: false,
+	        buttons: [ 'csv', 'pdf', 'colvis' ]
+	    } );
+	 
+	    table.buttons().container()
+	        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+	} );
+     </script>
+</div>
+<div class="dropdown-divider"></div>
+   {{ template "Footer" }}
+{{ end }}    

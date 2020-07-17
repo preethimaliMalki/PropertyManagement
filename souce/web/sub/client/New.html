@@ -1,0 +1,192 @@
+{{define "title"}}Create Order Order{{end}}
+{{define "head"}}{{end}}
+{{ define "content" }}
+  {{ template "Header" }}
+    
+ <div class="card">
+  <h3 class="card-header">Criar Ordem de Pedidos</h3>
+  <div class="card-body">
+
+    <form method="POST" action="/insert" enctype="multipart/form-data">
+       <div class="row">
+            <div class="col-sm-6">
+      
+
+    <div class="form-group row">
+      <div class="col-md-3">
+      <label> Data Pedido </label>
+      </div>
+
+      <div class="col-md-9">
+          <input type="date" name="datapedido" class="form-control" required/><br />
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-3">
+        <label> Produto </label>
+      </div>
+       
+      <div class="col-md-9">
+        <select class="form-control selectpicker chzn-done" id="produtoid" name="produto" data-live-search="true" multiple>
+          <option disabled>Selecione um produto</option>
+          {{ range .Produtos}}
+          <option value="{{.Pname}}"> {{ .Pname }}</option>
+          {{ end }} 
+        </select>
+        
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <div class="col-md-3">
+    
+         <label> Quantidade </label>
+      </div>
+
+      <div class="col-md-9">
+         <input id="quantidade"  type="number" class="form-control" name="quantidade" required/><br />
+      </div>
+
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3">  
+        <label> Valor Unidade </label>
+      </div>
+
+      <div class="col-md-9">
+         
+        <input id="valorunidade" type="number" class="form-control" name="valorunidade" readonly required/>
+        <br />
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-md-3">  
+    
+          <label> Valor Total </label>
+      </div>
+
+      <div class="col-md-9">
+          <input id="valortotal" type="number" class="form-control" name="valortotal" readonly required/><br />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3">  
+    
+          <label> Data Fabricado </label>
+      </div>
+      
+
+      <div class="col-md-9">
+      
+          <input type="date" class="form-control" name="datafabi" required /><br />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3">  
+        <label> Data Entrega </label>
+      </div>
+      
+      <div class="col-md-9">
+        <input type="date" class="form-control" name="dataentrega" required/><br />
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3">  
+        
+      <label> Cliente </label>
+      </div>
+      
+      <div class="col-md-9">
+      <select name="cliente" class="form-control">
+        <option disabled>Selecione um client</option>
+        {{ range .Clientes}}
+           <option value="{{.Fname}} {{.Lname}}"> {{.Fname}} {{.Lname}}</option>
+        {{end}} 
+      </select>
+      
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3">  
+        
+      <label>Status </label>
+      </div>
+      
+      <div class="col-md-9">
+   
+      <select name="status" class="form-control">
+        <option disabled>Selecione um status</option>
+        <option value="pago">Pago</option>
+        <option value="parcial">Parcial</option>
+        <option value="em aberto">Em Aberto</option>
+      </select>
+      </div>
+    </div>
+
+    
+    <div class="form-group row">
+      <div class="col-md-3">  
+          <label> Obs </label>
+      </div>
+      <div class="col-md-9">
+          <textarea type="text" name="obs" class="form-control" required></textarea>
+      </div> 
+    </div>
+      <input type="hidden" id="multi-product" name="multi-product">
+      <button type="submit" class="btn btn-info" value="Gerar Pedido">Gerar Pedido1</button> 
+    </div>
+  </div>
+  <input type="hidden" name="token" value="{{.token}}">
+    </form>
+      </div>
+</div>
+<!-- <script>
+$(document).ready(function(){
+  var prdito = [
+    {{ range .Produtos}}
+      {
+        "Pname": "{{.Pname}}",
+        "Product_cost" : "{{ .Product_cost }}"
+      },
+    {{ end }} 
+  ]
+
+  var varlortotal = 0;
+  $('#produtoid').on('change', function() {
+    $('#multi-product').val($(this).val());
+    console.log($('#multi-product').val());
+
+    
+    var valorunidadeTotal = 0;
+    $("#produtoid option:selected").each(function() {
+      var i = $(this).index();
+      valorunidadeTotal += parseInt(prdito[i-1].Product_cost)
+    });
+    console.log(valorunidadeTotal);
+
+    $("#valorunidade").val(valorunidadeTotal);
+    $("#quantidade").val(0);
+    $("#valortotal").val(0);
+
+    console.log( $('option:selected', this).text() );   
+  });
+
+  $('input').focusout(function(){
+    var vtotal = parseFloat($("input[name='quantidade']").val())*parseFloat($("input[name='valorunidade']").val());
+  
+    // console.log(vtotal);
+    $("input[name='valortotal']").val(vtotal.toFixed(2));
+  });
+  $('.selectpicker').selectpicker();
+});
+
+</script> -->
+  {{ template "Footer" }}
+{{ end }}
